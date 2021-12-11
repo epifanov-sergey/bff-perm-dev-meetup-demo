@@ -15,6 +15,12 @@ export type Scalars = {
   Float: number;
 };
 
+export type Manager = {
+  __typename?: 'Manager';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
+
 /** Информация о матче */
 export type Match = {
   __typename?: 'Match';
@@ -25,6 +31,7 @@ export type Match = {
   homeTeam: Team;
   id: Scalars['ID'];
   kickOff: Scalars['String'];
+  stadium: Stadium;
 };
 
 export type Query = {
@@ -39,10 +46,17 @@ export type QueryMatchArgs = {
   id: Scalars['String'];
 };
 
+export type Stadium = {
+  __typename?: 'Stadium';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
+
 /** Информация о команде */
 export type Team = {
   __typename?: 'Team';
   id: Scalars['ID'];
+  manager: Manager;
   name: Scalars['String'];
 };
 
@@ -60,8 +74,19 @@ export type MatchQuery = {
         awayScore: number;
         date: string;
         kickOff: string;
-        homeTeam: { __typename?: 'Team'; id: string; name: string };
-        awayTeam: { __typename?: 'Team'; id: string; name: string };
+        homeTeam: {
+          __typename?: 'Team';
+          id: string;
+          name: string;
+          manager: { __typename?: 'Manager'; name: string };
+        };
+        awayTeam: {
+          __typename?: 'Team';
+          id: string;
+          name: string;
+          manager: { __typename?: 'Manager'; name: string };
+        };
+        stadium: { __typename?: 'Stadium'; name: string };
       }
     | null
     | undefined;
@@ -90,13 +115,22 @@ export const MatchDocument = gql`
       homeTeam {
         id
         name
+        manager {
+          name
+        }
       }
       awayTeam {
         id
         name
+        manager {
+          name
+        }
       }
       date
       kickOff
+      stadium {
+        name
+      }
     }
   }
 `;

@@ -1,4 +1,5 @@
 import { ObjectType, ID, Field } from 'type-graphql';
+import { Manager } from './manager';
 
 @ObjectType({ description: 'Информация о команде' })
 export class Team {
@@ -7,4 +8,7 @@ export class Team {
 
   @Field()
   name: string;
+
+  @Field()
+  manager: Manager;
 }

@@ -1,5 +1,6 @@
 import { ObjectType, ID, Field } from 'type-graphql';
 import { Team } from './team';
+import { Stadium } from './stadium';
 
 @ObjectType({ description: 'Информация о матче' })
 export class Match {
@@ -23,4 +24,7 @@ export class Match {
 
   @Field()
   awayScore: number;
+
+  @Field()
+  stadium: Stadium;
 }

@@ -6,7 +6,6 @@ import { useMatchQuery } from '$types/graphql';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import * as Styled from './styled';
-import { Container } from './styled';
 
 export const Match: React.FC = () => {
   const { id } = useParams();
@@ -25,7 +24,7 @@ export const Match: React.FC = () => {
       {data ? (
         <Styled.Container>
           <Row>
-            <Col span={12}>
+            <Col span={6}>
               <Typography.Paragraph>
                 {format(
                   new Date(`${data.match.date}T${data.match.kickOff}`),
@@ -36,12 +35,24 @@ export const Match: React.FC = () => {
                 )}
               </Typography.Paragraph>
             </Col>
+            <Col span={12}>Стадион {data.match.stadium.name}</Col>
           </Row>
           <Row>
-            <Col span={12}>
+            <Col span={6}>
+              <Typography.Title level={5}>
+                {data.match.homeTeam.name} <br />
+                {data.match.homeTeam.manager.name}
+              </Typography.Title>
+            </Col>
+            <Col span={4}>
               <Typography.Title level={4}>
-                {data.match.homeTeam.name} {data.match.homeScore}-{data.match.awayScore}{' '}
-                {data.match.awayTeam.name}
+                {data.match.homeScore} - {data.match.awayScore}
+              </Typography.Title>
+            </Col>
+            <Col span={6}>
+              <Typography.Title level={5}>
+                {data.match.awayTeam.name} <br />
+                {data.match.awayTeam.manager.name}
               </Typography.Title>
             </Col>
           </Row>

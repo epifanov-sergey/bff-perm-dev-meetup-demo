@@ -15,10 +15,22 @@ type Match {
   awayTeam: Team!
   homeScore: Float!
   awayScore: Float!
+  stadium: Stadium!
 }
 
 """Информация о команде"""
 type Team {
+  id: ID!
+  name: String!
+  manager: Manager!
+}
+
+type Manager {
+  id: ID!
+  name: String!
+}
+
+type Stadium {
   id: ID!
   name: String!
 }

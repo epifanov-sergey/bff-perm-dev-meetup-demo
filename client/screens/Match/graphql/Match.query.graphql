@@ -6,12 +6,21 @@ query Match($id: String!) {
     homeTeam {
       id
       name
+      manager {
+        name
+      }
     }
     awayTeam {
       id
       name
+      manager {
+        name
+      }
     }
     date
     kickOff
+    stadium {
+      name
+    }
   }
 }

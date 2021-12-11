@@ -1,7 +1,7 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import data from '../data/matches.json';
 import { Match, Team } from '../domain';
-import { IRawData, InputAwayTeam, InputHomeTeam, TeamType } from './types';
+import { RawData, InputAwayTeam, InputHomeTeam, TeamType } from './types';
 
 export class FootballApi extends RESTDataSource {
   constructor() {
@@ -13,10 +13,10 @@ export class FootballApi extends RESTDataSource {
   }
 
   getMatch(id: string): Match | null {
-    const arSelectedMatch = data
+    const arrSelectedMatch = data
       .filter(({ match_id }) => Number(id) === match_id)
       .map(matchConverter);
-    return arSelectedMatch.length ? arSelectedMatch[0] : null;
+    return arrSelectedMatch.length ? arrSelectedMatch[0] : null;
   }
 }
 
@@ -28,7 +28,8 @@ const matchConverter = ({
   away_team,
   away_score,
   home_score,
-}: IRawData): Match => ({
+  stadium,
+}: RawData): Match => ({
   id: `${match_id}`,
   date: match_date,
   kickOff: kick_off,
@@ -36,6 +37,7 @@ const matchConverter = ({
   awayTeam: transformTeam(away_team, 'AWAY'),
   homeScore: home_score,
   awayScore: away_score,
+  stadium: { id: stadium.id, name: stadium.name },
 });
 
 const transformTeam = (sourceTeam: InputAwayTeam | InputHomeTeam, type: TeamType): Team => {
@@ -49,5 +51,6 @@ const transformTeam = (sourceTeam: InputAwayTeam | InputHomeTeam, type: TeamType
       type === 'AWAY'
         ? (sourceTeam as InputAwayTeam).away_team_name
         : (sourceTeam as InputHomeTeam).home_team_name,
+    manager: { id: sourceTeam.managers[0].id, name: sourceTeam.managers[0].nickname },
   };
 };

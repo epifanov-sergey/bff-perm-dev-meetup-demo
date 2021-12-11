@@ -5,8 +5,7 @@ export interface InputAwayTeam {
   away_team_name: string;
   away_team_gender: string;
   away_team_group: null;
-  country: unknown;
-  managers: unknown[];
+  managers: Manager[];
 }
 
 export interface InputHomeTeam {
@@ -14,8 +13,7 @@ export interface InputHomeTeam {
   home_team_name: string;
   home_team_gender: string;
   home_team_group: null;
-  country: unknown;
-  managers: unknown[];
+  managers: Manager[];
 }
 
 export interface Manager {
@@ -28,7 +26,7 @@ export interface Stadium {
   name: string;
 }
 
-export interface IRawData {
+export interface RawData {
   match_id: number;
   match_date: string;
   kick_off: string;
