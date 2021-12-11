@@ -1,0 +1,24 @@
+type Query {
+  """Получить список матчей"""
+  matches: [Match!]!
+
+  """Получить матч по id"""
+  match(id: String!): Match
+}
+
+"""Информация о матче"""
+type Match {
+  id: ID!
+  date: String!
+  kickOff: String!
+  homeTeam: Team!
+  awayTeam: Team!
+  homeScore: Float!
+  awayScore: Float!
+}
+
+"""Информация о команде"""
+type Team {
+  id: ID!
+  name: String!
+}

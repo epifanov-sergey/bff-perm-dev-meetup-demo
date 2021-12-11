@@ -1,0 +1,15 @@
+query Matches {
+  matches {
+    id
+    kickOff
+    date
+    homeTeam {
+      id
+      name
+    }
+    awayTeam {
+      id
+      name
+    }
+  }
+}

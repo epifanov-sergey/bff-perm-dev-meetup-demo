@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "no-return-await": "error",
+    "require-await": "error",
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "argsIgnorePattern": "^_" }],
+    "prettier/prettier": "error",
+    "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
+    "react-hooks/exhaustive-deps": "error",
+    "no-shadow": "error",
+    "default-case": "error"
+  },
+  "env": {
+    "node": true
+  }
+}

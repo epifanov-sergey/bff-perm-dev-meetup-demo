@@ -1,0 +1,17 @@
+query Match($id: String!) {
+  match(id: $id) {
+    id
+    homeScore
+    awayScore
+    homeTeam {
+      id
+      name
+    }
+    awayTeam {
+      id
+      name
+    }
+    date
+    kickOff
+  }
+}

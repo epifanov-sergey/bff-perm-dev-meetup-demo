@@ -1,0 +1,6 @@
+{
+  "watch": ["server/**/*.ts"],
+  "ignore": ["graphiql/*", "client/*"],
+  "exec": "npm run start:server",
+  "ext": "ts"
+}
